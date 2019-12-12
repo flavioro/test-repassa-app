@@ -63,7 +63,7 @@ class UserPanel extends React.Component
         return (
             <div className="main">
                 <Card header={ this.cardHeader() } >
-                    { this.props.data.user.id ? this.feedbackRender() : this.feedbackEmpty() }
+                    { this.props.data.user.feedback ? this.feedbackRender() : this.feedbackEmpty() }
                 </Card>
             </div>
         )
