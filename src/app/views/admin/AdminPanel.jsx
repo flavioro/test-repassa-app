@@ -63,11 +63,12 @@ export default class AdminPanel extends React.Component
                     }
                 ))
             })
+            .finally(() => { this.setState({ loader: false }) })
     }
 
     apiGet = async () =>
     {
-        await this.setState({ loader: !this.state.loader })
+        await this.setState({ loader: true })
         Axios.get(this.props.endpoint + 'list')
             .then(response =>
             {
@@ -80,16 +81,11 @@ export default class AdminPanel extends React.Component
                         id: data._id
                     }
 
-                    return (
-                        this.setState(prevState => (
-                            {
-                                employeeList: [...prevState.employeeList, employee],
-                                loader: false
-                            }
-                        ))
+                    return ( this.setState(prevState => ( { employeeList: [...prevState.employeeList, employee] } ))
                     )
                 })
             })
+            .finally(() => { this.setState({ loader: false })})
     }
 
     apiPut = () =>
@@ -111,6 +107,7 @@ export default class AdminPanel extends React.Component
                     }
                 ))
             })
+            .finally(() => { this.setState({ loader: false }) })
     }
 
     /**
@@ -248,27 +245,27 @@ export default class AdminPanel extends React.Component
         ))
     }
 
-    cleanErrors = () =>
-    { 
-        this.setState(prevState => (
-            {
-                duplicate: { ...prevState.duplicate, status: false },
-                empty: { ...prevState.empty, status: false }
-            }
-        ))
-    }
-
     modalClose = () => 
     {
         this.formReset()
         this.modalToggle()
     }
 
-    modalSave =() =>
+    modalSave = async () =>
     {
-        this.cleanErrors()
+        await this.setState(prevState => (
+            {
+                duplicate: { ...prevState.duplicate, status: false },
+                empty: { ...prevState.empty, status: false },
+                loader: true
+            }
+        // ), () => { })
+        ))
         if (this.state.form.name && this.state.form.login) this.state.form.id ? this.apiPut() : this.apiPost()
-        else this.setState(prevState => ({ empty: { ...prevState.empty, status: true } }))
+        else this.setState(prevState => ({
+            empty: { ...prevState.empty, status: true },
+            loader: false
+        }))
     }
 
     modalBuild = () =>
@@ -307,8 +304,8 @@ export default class AdminPanel extends React.Component
                         />
                     </div>
                     <div className="field-group">
-                        <span className={ this.state.duplicate.status ? '' : 'd-none' }>{ this.state.duplicate.msg }</span>
-                        <span className={ this.state.empty.status ? '' : 'd-none' }>{ this.state.empty.msg}</span>
+                        <span>{ this.state.duplicate.status ? this.state.duplicate.msg : this.state.empty.status ? this.state.empty.msg : '⠀' }</span>
+                        <i className={ this.state.loader ? "fa fa-spinner fa-pulse" : 'd-none'}></i>
                     </div>
                 </div>
                 <div className="modal-footer">

@@ -11,10 +11,11 @@ import Modal from '../../components/Modal'
 
 const initState = {
     modalDisplay: true,
+    loader: false,
     login: '',
     notFound: {
         status: false,
-        msg: 'Login incorreto ou não existe.'
+        msg: 'Login incorreto ou inexistente.'
     }
 }
 
@@ -42,12 +43,15 @@ class UserLogin extends React.Component
                     { notFound: { ...prevState.notFound, status: true } }
                 ))
             })
+            .finally(() => { this.setState({ loader: false }) })
     }
 
     submitForm = () =>
     { 
-        this.setState(prevState => ({ notFound: { ...prevState.notFound, status: false } }))
-        if (this.state.login) this.getUser()
+        this.setState(prevState => ({
+            notFound: { ...prevState.notFound, status: false },
+            loader: true
+        }), () => { return this.state.login ? this.getUser() : false})
     }
 
     modalBuild = () =>
@@ -68,7 +72,7 @@ class UserLogin extends React.Component
                         />
                     </div>
                     <div className="field-group">
-                        <span className={ this.state.notFound.status ? '' : 'd-none' }>{ this.state.notFound.msg }</span>
+                        <span>{ this.state.notFound.status ? this.state.notFound.msg : '⠀' }</span>
                     </div>
                 </div>
                 <div className="modal-footer">
@@ -76,17 +80,14 @@ class UserLogin extends React.Component
                         className="btn btn-primary full"
                         onClick={ () => this.submitForm() }
                     >
-                        login
+                        { this.state.loader ? <i className="fa fa-spinner fa-pulse"></i> : 'login' }
                     </button>
                 </div>
             </React.Fragment>
         )
     }
 
-    componentDidUpdate = () =>
-    {
-        if (this.props.data.user.id) this.props.history.push('/user/panel')
-    }
+    componentDidUpdate = () => this.props.data.user.id ? this.props.history.push('/user/panel') : false
 
     render = () =>
     {
