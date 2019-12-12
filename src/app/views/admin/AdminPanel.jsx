@@ -221,7 +221,7 @@ export default class AdminPanel extends React.Component
     employeeListReset = () => this.setState({ employeeList: [] }, () => { this.apiGet() })
 
     /**
-     * @param {{ target: { name: React.ReactText value: String } }} event
+     * @param {{ target: { name: React.ReactText; value: String } }} event
      */
     formField = (event) => 
     {
