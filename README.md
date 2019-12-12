@@ -52,7 +52,7 @@ Para acessar e administrar os funcionários, é preciso acessar a área de admin
 
 Na área de usuário, é necessário fazer o login com o própro nome de login cadastrado para cada usuário. Para acessar a área de usuário comum, basta acessar a url padrão da aplicação. Após o usuário entrar com o seu login, ele sera redirecionado para a URL [https://repassa-app.herokuapp.com/user/panel](https://repassa-app.herokuapp.com/user/panel). Se você tentar acessar a área do painel de usuário diretamente com a URL [https://repassa-app.herokuapp.com/user/panel](https://repassa-app.herokuapp.com/user/panel) você será ejetado para a página de login, isso porque é necessário informar o login de usuário para ter acesso ao feedback específico.
 
-Você pode criar seu próprio login atravez da área de admin, ou pode acessar o painel de usuário comum com o seguinte login de teste: **lica**
+Você pode criar o seu próprio login atravez da área de admin, ou pode acessar o painel de usuário comum com o seguinte login de teste: **lica**
 
 Área do usuário: [https://repassa-app.herokuapp.com/](https://repassa-app.herokuapp.com/)
 
