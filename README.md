@@ -1,126 +1,81 @@
-![Agência Takeoff](https://agenciatakeoff.com.br/img/logo_mail_tk.png)
+# Test Repassa APP
 
-# Boilerplate client side
+## Instalação
 
-Template client side with Reactjs at create-react-app
+**NOTA:** Para executar qualquer um dos comandos abaixo, é imprescindível ter o gerenciador de dependencia NPM instalado globalmente em seu computador, e nagevar para dentro do diretório root da aplicação para que todos os comandos possam ser executados com sucesso.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Instalação local
 
-## Available Scripts
+Para fazer a instalação de todas as dependencias da aplicação, execute a seguinte linha de comando no terminal.
 
-In the project directory, you can run:
+    npm install
 
-### `npm start`
+**Nota**: Se após a intalação você receber informações de vulnerabilidades nas dependencias instaladas, execute o seguinte comando para corrigir eventuais vulnerabilidades.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    npm audit fix && npm audit fix --force
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Modo desenvolvimento
 
-### `npm test`
+Os arquivos do código fonte da aplicação estão contidos dentro do diretório `./src`.
+Após concluir a instalação de todas as dependencias da aplicação, é possível executar o comando de desenvolvimento no terminal.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    npm run dev
 
-### `npm run build`
+Depois de executar o comando acima, abra [http://localhost:3000](http://localhost:3000) para renderizar a aplicação no seu browser preferido.
+A página será recarregada sempre que fizer edições no seu código fonte, você também verá quaisquer eventuais erros no código no seu console e no próprio browser.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Construção - Compilar
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Este comando cria os arquivos de produção dentro do diretório `./build`. Os arquivos de produção são compilados para a versão ES5 do JS.
+Para construir a aplicação em modo producão, execute o seguinte comando:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm run build
 
-### `npm run eject`
+### Modo produção
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Este comando cria os arquivos de produção dentro do diretório ./build. Os arquivos de produção são transpilados e minificados para obter uma melhor performance e otimização de trafego de dados ao acessar a aplicação. Para construir a aplicação em modo producão, execute o seguinte comando
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    npm run start
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Nota:** Por motivos de segurança, os browsers não suportam a metodologia push state do React. Para que você consiga acessar a aplicação em questão em modo produção, eu disponibilizei a mesma no seguinte link: [https://repassa-app.herokuapp.com](https://repassa-app.herokuapp.com).
+Se você possui um servidor local capaz de executar aplicações web, e quiser buildar o projeto com o comando npm run build, não se esqueça de ajustar o caminho relativo no arquivo ./package.json na propriedade homepage:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Uso da aplicação
 
-## Learn More
+### Área de Administrador
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Para acessar e adminnistrar os funcionários, é preciso acessar a área de admin `/admin` da aplicação, ou seja, [https://repassa-app.herokuapp.com/admin](https://repassa-app.herokuapp.com/admin). Já na área de admin, é possível criar, listar, atualizar e deletar funcionários, além disso, você pode adicionar ou não um feedback para um funcionário, desta forma, quando o funcionário acessar o painel de usuário com o login dele, ele terá acesso a este feedback adicionado pelo administrador.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[https://repassa-app.herokuapp.com/admin](https://repassa-app.herokuapp.com/admin)
 
-### Code Splitting
+### Área do usuário
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Na área de usuário, é necessário fazer o login com o própro nome de login cadastrado para cada usuário. Para acessar a área de usuário comum, basta acessar a url padrão da aplicação. Após o usuário entrar com o seu login, ele sera redirecionado para a URL [https://repassa-app.herokuapp.com/user/panel](https://repassa-app.herokuapp.com/user/panel). Se você tentar acessar a área do painel de usuário diretamente com a URL [https://repassa-app.herokuapp.com/user/panel](https://repassa-app.herokuapp.com/user/panel) você será ejetado para fora, isso porque é necessário informar o login de usuário para ter acesso ao feedback.
 
-### Analyzing the Bundle Size
+Você pode criar o seu próprio login atravez da área de admin, ou pode acessar o painel de usuário comum com o seguinte login de teste: **lica**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+[https://repassa-app.herokuapp.com/](https://repassa-app.herokuapp.com/)
 
-### Making a Progressive Web App
+Eu fiz um deploy da aplicação no Heroku. Para acessar a aplicação em modo produção online basta acessar o seguinte link:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+[https://repassa-app.herokuapp.com](https://repassa-app.herokuapp.com)
 
-### Advanced Configuration
+## Metodologia e arquitetura
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Levando em consideração que menos é mais(code clean), acredito que não seja necessário a implementação de uma biblioteca como o Redux nesta aplicação, visando mantê-la a mais enxuta possível em todos os níveis. Até cogitei implementar a metodologia Flux, para que os módulos/componentes pudessem se comunicar entre si, mas ao invés disso, utilizei as técnicas de fluxo de dados unidirecional(one-way data flow) do React mantendo tudo rápido e modular. Fazendo uma analogia, é como se a arquitetura da aplicação fosse uma fonte de água, onde o fluxo de água escorre de cima para baixo(elevate state). Tudo aqui é dividido em componentes/styles e suas responsabilidades, ou seja, cada "pedaço" da aplicacão, por menor que seja, foi componentizada, tanto os arquivos JSX quanto os SCSS.
 
-### Deployment
+## Principais tecnologias integradas
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-___
-
-## Readme Template
-
-### Project init h3
-
-#### Project init h4
-
-#### Checklist
-
-- [x] O resultado deve ser responsivo e compatível com a última versão dos principais navegadores (IE >= 9);
-- [x] O botão contato no topo deve levar ao formulário de contato;
-
-#### Code
-
-    // instruction
-    command
-
-#### Tree structure
-
-    project.init/
-    ├── LICENSE
-    ├── package.json
-    ├── public
-    │   ├── assets
-    │   └── index.html
-    ├── README.md
-    └── src
-        ├── assets
-        │   ├── fonts
-        │   ├── icon
-        │   ├── img
-        │   ├── js
-        │   └── scss
-        └── views
-            └── index.html
-
-#### IMG
-
-[Correct link syntax](http://www.example.com/)
-
-    * Item 1
-    + Item 2
-    - Item 3
-
-    * Item 1
-    + Item 2
-        - Item 3
-    + Item 4
-    * Item 4
-    + Item 5
+- [x] ESlint.
+- [x] Express.
+- [x] Git.
+- [x] JavaScript.
+- [x] JSX.
+- [x] SCSS.
+- [x] Babel.
+- [x] React.
+- [x] Nodejs.
+- [x] NPM.
+- [x] Axios.
+- [x] Prop-types.
+- [x] Loading-skeleton.
