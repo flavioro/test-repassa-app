@@ -1,36 +1,15 @@
-// import PropTypes from 'prop-types';
-import React from 'react';
+﻿import React from 'react'
 
-// Components imports
-// // import NameComponent from '../../components/NameComponent';
+// Styles
+import '../assets/scss/Main.scss'
+
+// Components Childs
+import Header from '../components/Header'
 import Routes from '../routes'
 
-// Images imports
-// import NameImage from '../../assets/img';
-
-
-const initState = {
-    empply: "",
-}
-
-export default class Main extends React.Component
-{
-    constructor (props)
-    {
-        super(props);
-        this.state = { ...initState }
-    }
-
-    render ()
-    {
-        return (
-            <div className='container-fluid'>
-                <Routes />
-            </div>
-        );
-    }
-}
-
-// Home.propTypes = {
-//     name: PropTypes.array,
-// }
+export default props => ( 
+    <div className="main">
+        <Header />
+        <Routes />
+    </div>
+)

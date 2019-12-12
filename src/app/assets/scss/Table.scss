@@ -1,0 +1,99 @@
+﻿@import 'Source';
+
+table {
+    text-align: left;
+    border-collapse: collapse;
+    width: 100vw;
+
+    >tfoot {
+        font-weight: bold;
+        color: $color-primary;
+    }
+
+    thead,
+    tbody,
+    tfoot {
+
+        tr {
+            line-height: 40px;
+            font-size: $font-size;
+
+
+            th {
+                border-top: $border-grey-large;
+                border-bottom: $border-grey-large;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 5px 15px;
+            }
+
+            td {
+                padding: 5px 15px;
+                border-bottom: 1px solid #eee;
+
+
+                &.center {
+                    text-align: center;
+                }
+
+                button {
+                    border: $border-light;
+                    background: transparent;
+                    border-radius: $radius;
+                    color: $color-grey;
+                    padding: 7px 15px;
+                    transition: all .2s ease-in;
+                    -o-transition: all .2s ease-in;
+                    -moz-transition: all .2s ease-in;
+                    -webkit-transition: all .2s ease-in;
+
+                    &:first-child {
+                        margin-right: -1px;
+                        border-right: 0;
+                        border-radius: $radius 0 0 $radius;
+                    }
+
+                    &:last-child {
+                        border-left: 0;
+                        border-radius: 0 $radius $radius 0;
+                    }
+
+                    &.btn-edit {
+
+                        &:focus,
+                        &:active,
+                        &:hover {
+                            background: $yellow;
+                            border-color: $yellow;
+                            box-shadow: 0 0 5px 5px rgba(255, 152, 0, 0.3);
+
+                            i {
+                                color: #fff;
+                            }
+                        }
+                    }
+                    &.btn-dele {
+
+                        &:focus,
+                        &:active,
+                        &:hover {
+                            background: $pink;
+                            border-color: $pink;
+                            box-shadow: 0 0 5px 5px rgba(209, 65, 113, 0.3);
+
+                            i {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .actions {
+                width: 1%;
+                text-align: center;
+                white-space: nowrap;
+            }
+        }
+    }
+}
