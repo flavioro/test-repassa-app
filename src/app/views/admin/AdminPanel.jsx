@@ -1,17 +1,18 @@
-﻿import React from 'react';
+﻿import React from 'react'
 
 // dependencys
-import Axios from 'axios';
+import Axios from 'axios'
 import PropTypes from 'prop-types'
+import Skeleton from 'react-loading-skeleton'
 
 // Styles
-import '../../assets/icons/fontawesome/css/fontawesome.css';
-import '../../assets/icons/fontawesome/css/solid.css';
+import '../../assets/icons/fontawesome/css/fontawesome.css'
+import '../../assets/icons/fontawesome/css/solid.css'
 
 // Components Childs
-import Modal from '../../components/Modal';
-import Table from '../../components/Table';
-import Card from '../../components/Card';
+import Modal from '../../components/Modal'
+import Table from '../../components/Table'
+import Card from '../../components/Card'
 
 const initState = {
     modalDisplay: false,
@@ -40,7 +41,7 @@ export default class AdminPanel extends React.Component
      */
     constructor (props)
     {
-        super(props);
+        super(props)
         this.state = {
             ...initState
         }
@@ -48,7 +49,7 @@ export default class AdminPanel extends React.Component
 
     apiPost = () =>
     {
-        (Axios.post(this.props.endpoint + 'create', null, { params: { ...this.state.form } })
+        Axios.post(this.props.endpoint + 'create', null, { params: { ...this.state.form } })
             .then(() =>
             {
                 this.modalClose()
@@ -62,12 +63,12 @@ export default class AdminPanel extends React.Component
                     }
                 ))
             })
-        )
     }
 
-    apiGet = () =>
+    apiGet = async () =>
     {
-        (Axios.get(this.props.endpoint + 'list')
+        await this.setState({ loader: !this.state.loader })
+        Axios.get(this.props.endpoint + 'list')
             .then(response =>
             {
                 response.data.map(data =>
@@ -77,16 +78,18 @@ export default class AdminPanel extends React.Component
                         login: data.login,
                         feedback: data.feedback,
                         id: data._id
-                    };
+                    }
 
                     return (
                         this.setState(prevState => (
-                            { employeeList: [...prevState.employeeList, employee] }
+                            {
+                                employeeList: [...prevState.employeeList, employee],
+                                loader: false
+                            }
                         ))
                     )
                 })
             })
-        )
     }
 
     apiPut = () =>
@@ -139,7 +142,7 @@ export default class AdminPanel extends React.Component
     cardEmpty = () => 
     {
         return (
-            <div className="card-body">
+            <React.Fragment>
                 <div>
                     <h3>Nenhum funcionário cadastrado!</h3>
                     <span>Clique no botão <b>+</b> para cadastrar um novo funcionário<b>.</b></span>
@@ -147,19 +150,20 @@ export default class AdminPanel extends React.Component
                 <div className="emoji">
                     <i className="fas fa-grimace" />
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 
     tableRows = () =>
-    {
-        return this.state.employeeList.map((item, index) =>
+    {   
+        const itens = this.state.loader ? [1, 2, 3, 4, 5, 6, 7] : this.state.employeeList
+        return itens.map((item, index) =>
         {
             return (
                 <tr key={ index }>
-                    <td className="left">{ item.name }</td>
-                    <td>{ item.login }</td>
-                    <td>{ item.id }</td>
+                    <td className="left">{ this.state.loader ? <Skeleton /> : item.name }</td>
+                    <td>{ this.state.loader ? <Skeleton /> : item.login }</td>
+                    <td>{ this.state.loader ? <Skeleton /> : item.id }</td>
                     <td className="actions">
                         <button
                             className="btn btn-edit"
@@ -220,7 +224,7 @@ export default class AdminPanel extends React.Component
     employeeListReset = () => this.setState({ employeeList: [] }, () => { this.apiGet() })
 
     /**
-     * @param {{ target: { name: React.ReactText; value: String; }; }} event
+     * @param {{ target: { name: React.ReactText value: String } }} event
      */
     formField = (event) => 
     {
@@ -325,10 +329,7 @@ export default class AdminPanel extends React.Component
         )
     }
 
-    componentDidMount = () =>
-    { 
-        this.apiGet()
-    }
+    componentDidMount = () => this.apiGet()
 
     render = () =>
     {
@@ -336,7 +337,7 @@ export default class AdminPanel extends React.Component
             <div className="main">
                 <Card header={ this.cardHeader() } >
                     <Table>
-                        { this.state.employeeList.length ? this.tableBuild() : this.cardEmpty() }
+                        { this.state.employeeList.length || this.state.loader ? this.tableBuild() : this.cardEmpty() }
                     </Table>
                 </Card>
                 <Modal display={ this.state.modalDisplay }>

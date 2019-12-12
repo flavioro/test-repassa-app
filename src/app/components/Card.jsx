@@ -1,10 +1,10 @@
-﻿import React from 'react';
+﻿import React from 'react'
 
 // Tools
 import PropTypes from 'prop-types'
 
 // Style
-import '../assets/scss/Card.scss';
+import '../assets/scss/Card.scss'
 
 
 export default function Card (props)

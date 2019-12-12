@@ -1,15 +1,15 @@
-﻿import React from 'react';
+﻿import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 // Tools
 import PropTypes from 'prop-types'
 
 // Styles
-import '../../assets/icons/fontawesome/css/fontawesome.css';
-import '../../assets/icons/fontawesome/css/solid.css';
+import '../../assets/icons/fontawesome/css/fontawesome.css'
+import '../../assets/icons/fontawesome/css/solid.css'
 
 // Components Childs
-import Card from '../../components/Card';
+import Card from '../../components/Card'
 
 class UserPanel extends React.Component
 {
@@ -63,7 +63,7 @@ class UserPanel extends React.Component
         return (
             <div className="main">
                 <Card header={ this.cardHeader() } >
-                    { this.props.data.user.feedback ? this.feedbackRender() : this.feedbackEmpty() }
+                    { this.props.data.user.id ? this.feedbackRender() : this.feedbackEmpty() }
                 </Card>
             </div>
         )

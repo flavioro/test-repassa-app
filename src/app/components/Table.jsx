@@ -1,10 +1,10 @@
-﻿import React from 'react';
+﻿import React from 'react'
 
 // Tools
 import PropTypes from 'prop-types'
 
 // Style
-import '../assets/scss/Table.scss';
+import '../assets/scss/Table.scss'
 
 export default function Table (props)
 {

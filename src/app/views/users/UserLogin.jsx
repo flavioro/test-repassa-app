@@ -1,17 +1,17 @@
-﻿import React from 'react';
+﻿import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 
 // dependencys
-import Axios from 'axios';
+import Axios from 'axios'
 import PropTypes from 'prop-types'
 
 // Components Childs
-import Modal from '../../components/Modal';
+import Modal from '../../components/Modal'
 
 const initState = {
     modalDisplay: true,
-    login: undefined,
+    login: '',
     notFound: {
         status: false,
         msg: 'Login incorreto ou não existe.'
@@ -23,7 +23,7 @@ class UserLogin extends React.Component
 
     constructor (props)
     {
-        super(props);
+        super(props)
         this.state = {
             ...initState
         }

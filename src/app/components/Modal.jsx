@@ -1,13 +1,13 @@
-﻿import React from 'react';
+﻿import React from 'react'
 
 // Tools
 import PropTypes from 'prop-types'
 
 // Style
-import '../assets/scss/Modal.scss';
+import '../assets/scss/Modal.scss'
 
 // Components Childs
-import Logo from './Brand';
+import Logo from './Brand'
 
 const Modal = props => (
     <div className={props.display ? "modal" : "d-none"}>

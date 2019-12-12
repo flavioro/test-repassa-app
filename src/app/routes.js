@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import React from "react"
 
 // COMPONENTS VIEWS IMPORTS
@@ -22,7 +22,7 @@ export default class Routes extends React.Component
 {
     constructor (props)
     {
-        super(props);
+        super(props)
         this.state = {
             apiEndpoint: api.endpoint,
             user: user
