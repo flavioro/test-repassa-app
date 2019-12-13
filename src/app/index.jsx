@@ -7,12 +7,10 @@ import './assets/scss/Main.scss'
 import Header from './components/Header'
 import Routes from './routes'
 
-export default function App (props)
-{
-    return (
-        <div className="main">
-            <Header />
-            <Routes />
-        </div>
-    )
-}
+export default props =>
+(
+    <div className="main">
+        <Header />
+        <Routes />
+    </div>
+)
