@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import '../assets/scss/Card.scss'
 
 
-export default function Card (props)
+export default (props) =>
 {
     return (
         <div className="wrapper">
