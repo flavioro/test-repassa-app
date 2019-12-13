@@ -88,7 +88,6 @@ class UserLogin extends React.Component
                         <input
                             type="text"
                             name="login"
-                            // onChange={ (e) => this.setState({ login: e.target.value }) }
                             onChange={ (e) => this.formField(e) }
                             value={ this.state.login }
                         />

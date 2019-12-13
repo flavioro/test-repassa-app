@@ -29,7 +29,7 @@ const initState = {
     },
     empty: {
         status: false,
-        msg: 'Preencha todos os campos'
+        msg: 'Preencha os campos de nome e login'
     }
 }
 

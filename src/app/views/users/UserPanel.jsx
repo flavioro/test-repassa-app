@@ -58,7 +58,7 @@ class UserPanel extends React.Component
 
     componentDidMount = () =>
     {
-        if (!this.props.data.user.id) this.props.history.push('/')
+        if (!this.props.data.user.id) this.props.history.push('/user')
     }
 
     render = () =>
