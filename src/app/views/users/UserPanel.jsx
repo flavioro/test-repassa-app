@@ -58,12 +58,15 @@ class UserPanel extends React.Component
 
     componentDidMount = () =>
     {
+        console.log('didmount')
         console.log(this.props.history)
+        console.log('id-user' + this.props.data.user.id)
         if (!this.props.data.user.id) this.props.history.push('/user')
     }
-
+    
     render = () =>
     {
+        console.log('render')
         return (
             <div className="main">
                 <Card header={ this.cardHeader() } >
