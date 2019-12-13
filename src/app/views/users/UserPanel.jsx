@@ -11,7 +11,7 @@ import '../../assets/icons/fontawesome/css/solid.css'
 // Components Childs
 import Card from '../../components/Card'
 
-class UserPanel extends React.Component
+export default class UserPanel extends React.Component
 {
 
     cardHeader = () =>
@@ -58,18 +58,8 @@ class UserPanel extends React.Component
 
     componentDidMount = () =>
     {
-        console.log('didmount')
-        console.log(this.props)
-        console.log(this.props.history)
-        console.log('id-user' + this.props.data.user.id)
-        // if (!this.props.data.user.id) this.props.history.push('/user')
         if (!this.props.data.user.id) document.location.href = '/user'
     }
-
-    componentWillMount = () => {
-        if (!this.props.data.user.id) document.location.href = '/user'
-    }
-    
     
     render = () =>
     {
@@ -83,9 +73,6 @@ class UserPanel extends React.Component
         )
     }
 }
-
-export default withRouter(UserPanel)
-
 
 UserPanel.propTypes = {
     data: PropTypes.object.isRequired
