@@ -259,7 +259,6 @@ export default class AdminPanel extends React.Component
                 empty: { ...prevState.empty, status: false },
                 loader: true
             }
-        // ), () => { })
         ))
         if (this.state.form.name && this.state.form.login) this.state.form.id ? this.apiPut() : this.apiPost()
         else this.setState(prevState => ({
