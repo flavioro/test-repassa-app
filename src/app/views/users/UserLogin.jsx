@@ -16,6 +16,10 @@ const initState = {
     notFound: {
         status: false,
         msg: 'Login incorreto ou inexistente.'
+    },
+    empty: {
+        status: false,
+        msg: 'Preencha seu login'
     }
 }
 
@@ -48,10 +52,27 @@ class UserLogin extends React.Component
 
     submitForm = () =>
     { 
-        this.setState(prevState => ({
-            notFound: { ...prevState.notFound, status: false },
-            loader: true
-        }), () => { return this.state.login ? this.getUser() : false})
+        if (this.state.login)
+        {
+            this.setState(prevState => ({
+                notFound: { ...prevState.notFound, status: false },
+                empty: { ...prevState.empty, status: false },
+                loader: true
+            }), () => { return this.state.login ? this.getUser() : false })
+        } else
+        {
+            this.setState(prevState => ({
+                notFound: { ...prevState.notFound, status: false },
+                empty: { ...prevState.empty, status: true },
+                loader: false
+            }), () => { return false })
+        }
+    }
+
+    formField = (e) => 
+    {
+        this.setState((prevState) => ({ empty: { ...prevState.empty, status: false } }))
+        this.setState({ login: e.target.value })
     }
 
     modalBuild = () =>
@@ -67,12 +88,13 @@ class UserLogin extends React.Component
                         <input
                             type="text"
                             name="login"
-                            onChange={ (e) => this.setState({ login: e.target.value }) }
+                            // onChange={ (e) => this.setState({ login: e.target.value }) }
+                            onChange={ (e) => this.formField(e) }
                             value={ this.state.login }
                         />
                     </div>
                     <div className="field-group">
-                        <span>{ this.state.notFound.status ? this.state.notFound.msg : '⠀' }</span>
+                        <span>{ this.state.notFound.status ? this.state.notFound.msg : this.state.empty.status ? this.state.empty.msg : '⠀'  }</span>
                     </div>
                 </div>
                 <div className="modal-footer">
@@ -87,7 +109,10 @@ class UserLogin extends React.Component
         )
     }
 
-    componentDidUpdate = () => this.props.data.user.id ? this.props.history.push('/user/panel') : false
+    componentDidUpdate = () =>
+    { 
+        if (this.props.data.user.id) this.props.history.push('/user/panel') 
+    }
 
     render = () =>
     {

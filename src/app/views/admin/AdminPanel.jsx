@@ -221,7 +221,7 @@ export default class AdminPanel extends React.Component
     employeeListReset = () => this.setState({ employeeList: [] }, () => { this.apiGet() })
 
     /**
-     * @param {{ target: { name: React.ReactText value: String } }} event
+     * @param {{ target: { name: React.ReactText; value: String } }} event
      */
     formField = (event) => 
     {
@@ -259,7 +259,6 @@ export default class AdminPanel extends React.Component
                 empty: { ...prevState.empty, status: false },
                 loader: true
             }
-        // ), () => { })
         ))
         if (this.state.form.name && this.state.form.login) this.state.form.id ? this.apiPut() : this.apiPost()
         else this.setState(prevState => ({
