@@ -46,8 +46,8 @@ class UserPanel extends React.Component
         return (
             <React.Fragment>
                 <div>
-                    <h3>Sem feedback ainda!</h3>
-                    <p>Você ainda não recebeu nenhum feedback do seu gestor.</p>
+                    <h3>Nenhum feedback ainda!</h3>
+                    <p>Você não recebeu nenhum feedback do seu gestor.</p>
                 </div>
                 <div className="emoji">
                     <i className="fa fa-meh-rolling-eyes" />
@@ -65,6 +65,11 @@ class UserPanel extends React.Component
         // if (!this.props.data.user.id) this.props.history.push('/user')
         if (!this.props.data.user.id) document.location.href = '/user'
     }
+
+    componentWillMount = () => {
+        if (!this.props.data.user.id) document.location.href = '/user'
+    }
+    
     
     render = () =>
     {
