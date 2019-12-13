@@ -6,7 +6,7 @@ import '../assets/scss/Header.scss'
 // Components Childs
 import Brand from './Brand'
 
-export default props =>
+export default function Header (props)
 {
     return (
         <header>

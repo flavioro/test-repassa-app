@@ -9,19 +9,20 @@ import '../assets/scss/Modal.scss'
 // Components Childs
 import Logo from './Brand'
 
-const Modal = props => (
-    <div className={props.display ? "modal" : "d-none"}>
-        <div className="modal-main">
-            <div className="modal-head">
-                <Logo />
-                <span>campos marcados com * são obrigatórios</span>
+export default function Modal (props)
+{
+    return (
+        <div className={ props.display ? "modal" : "d-none" }>
+            <div className="modal-main">
+                <div className="modal-head">
+                    <Logo />
+                    <span>campos marcados com * são obrigatórios</span>
+                </div>
+                { props.children }
             </div>
-            {props.children}
         </div>
-    </div>
-)
-
-export default Modal
+    )
+}
 
 Modal.propTypes = {
     display: PropTypes.bool.isRequired,
