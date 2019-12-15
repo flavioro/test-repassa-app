@@ -29,5 +29,4 @@ var server = http.createServer(app)
 server.listen(setup.port, () =>
 {
     console.log(setup.banner)
-    return true 
 })

@@ -7,7 +7,7 @@ table {
 
     >tfoot {
         font-weight: bold;
-        color: $color-primary;
+        color: var(--primary);
     }
 
     thead,
@@ -16,12 +16,12 @@ table {
 
         tr {
             line-height: 40px;
-            font-size: $font-size;
+            font-size: var(--font-small);
 
 
             th {
-                border-top: $border-grey-large;
-                border-bottom: $border-grey-large;
+                border-top: var(--border-grey);
+                border-bottom: var(--border-grey);
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 padding: 5px 15px;
@@ -29,7 +29,7 @@ table {
 
             td {
                 padding: 5px 15px;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid var(--grey-200);
 
 
                 &.center {
@@ -37,25 +37,25 @@ table {
                 }
 
                 button {
-                    border: $border-light;
+                    border: var(--border-light);
                     background: transparent;
-                    border-radius: $radius;
-                    color: $color-grey;
+                    border-radius: var(--radius);
+                    color: var(--grey);
                     padding: 7px 15px;
-                    transition: all .2s ease-in;
-                    -o-transition: all .2s ease-in;
-                    -moz-transition: all .2s ease-in;
-                    -webkit-transition: all .2s ease-in;
+                    transition: var(--transition);
+                    -o-transition: var(--transition);
+                    -moz-transition: var(--transition);
+                    -webkit-transition: var(--transition);
 
                     &:first-child {
                         margin-right: -1px;
                         border-right: 0;
-                        border-radius: $radius 0 0 $radius;
+                        border-radius: var(--radius) 0 0 var(--radius);
                     }
 
                     &:last-child {
                         border-left: 0;
-                        border-radius: 0 $radius $radius 0;
+                        border-radius: 0 var(--radius) var(--radius) 0;
                     }
 
                     &.btn-edit {
@@ -63,12 +63,12 @@ table {
                         &:focus,
                         &:active,
                         &:hover {
-                            background: $yellow;
-                            border-color: $yellow;
+                            background: var(--orange);
+                            border-color: var(--orange);
                             box-shadow: 0 0 5px 5px rgba(255, 152, 0, 0.3);
 
                             i {
-                                color: #fff;
+                                color: var(--white);
                             }
                         }
                     }
@@ -77,12 +77,12 @@ table {
                         &:focus,
                         &:active,
                         &:hover {
-                            background: $pink;
-                            border-color: $pink;
+                            background: var(--pink);
+                            border-color: var(--pink);
                             box-shadow: 0 0 5px 5px rgba(209, 65, 113, 0.3);
 
                             i {
-                                color: #fff;
+                                color: var(--white);
                             }
                         }
                     }

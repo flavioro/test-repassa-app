@@ -16,6 +16,7 @@
   "homepage": ".",
   "scripts": {
     "clean": "rm -rf build package-lock.json npm-debug.log",
+    "local": "rm -rf /var/www/localServer/public/* && cp -R ./ /var/www/localServer/public/ && cd /var/www/localServer/public/ && npm run build && node /var/www/localServer/backend/server.js",
     "start": "npm run build && node server/index.js",
     "build": "npm run clean && react-scripts build",
     "eject": "react-scripts eject",
@@ -24,8 +25,10 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "font-awesome": "^4.7.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

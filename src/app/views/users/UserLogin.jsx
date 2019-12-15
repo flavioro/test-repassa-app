@@ -1,10 +1,9 @@
 ﻿import React from 'react'
-import { withRouter } from 'react-router-dom'
 
-
-// dependencys
+// Tools
 import Axios from 'axios'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 // Components Childs
 import Modal from '../../components/Modal'
@@ -88,7 +87,6 @@ class UserLogin extends React.Component
                         <input
                             type="text"
                             name="login"
-                            // onChange={ (e) => this.setState({ login: e.target.value }) }
                             onChange={ (e) => this.formField(e) }
                             value={ this.state.login }
                         />

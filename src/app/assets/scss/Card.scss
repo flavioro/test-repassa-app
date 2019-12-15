@@ -4,11 +4,11 @@
 .card {
     width: calc(100% - 30px);
     max-width: 768px;
-    background: #fff;
+    background: var(--white);
     position: relative;
     margin: -85px auto 30px;
-    border-radius: $radius;
-    box-shadow: $shadow;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     overflow: hidden;
 
     .card-head {
@@ -24,13 +24,13 @@
         }
 
         .btn-add {
-            background: $color-primary;
-            border-radius: $radius;
+            background: var(--primary);
+            border-radius: var(--radius);
             display: flex;
             justify-content: center;
             align-items: center;
             line-height: normal;
-            color: #fff;
+            color: var(--white);
             padding: 0;
             width: 40px;
             height: 40px;
@@ -45,7 +45,7 @@
             &:focus,
             &:active,
             &:hover {
-                box-shadow: 0px 0px 10px 2px $color-primary;
+                box-shadow: 0px 0px 10px 2px var(--primary);
                 transform: rotate(-180deg);
                 -o-transform: rotate(-180deg);
                 -ms-transform: rotate(-180deg);
@@ -71,7 +71,7 @@
         
         & .emoji {
             font-size: 5rem;
-            color: #e3e3e3;
+            color: var(--gray-200);
         }
 
         h3 {
@@ -79,7 +79,7 @@
         }
 
         b {
-            color: $color-primary;
+            color: var(--primary);
         }
     }
 }
