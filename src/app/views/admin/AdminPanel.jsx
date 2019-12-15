@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
 
 // Styles
-import '../../assets/icons/fontawesome/css/fontawesome.css'
-import '../../assets/icons/fontawesome/css/solid.css'
+// import '../../assets/icons/fontawesome/css/fontawesome.css'
+// import '../../assets/icons/fontawesome/css/solid.css'
 
 // Components Childs
 import Modal from '../../components/Modal'

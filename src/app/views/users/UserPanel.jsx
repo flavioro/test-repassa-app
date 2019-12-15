@@ -2,15 +2,12 @@
 
 // Tools
 import PropTypes from 'prop-types'
-
-// Styles
-import '../../assets/icons/fontawesome/css/fontawesome.css'
-import '../../assets/icons/fontawesome/css/solid.css'
+import { withRouter } from 'react-router-dom'
 
 // Components Childs
 import Card from '../../components/Card'
 
-export default class UserPanel extends React.Component
+class UserPanel extends React.Component
 {
 
     cardHeader = () =>
@@ -22,7 +19,7 @@ export default class UserPanel extends React.Component
                     className="btn btn-add"
                     onClick={ () => document.location.href = '/' }
                 >
-                    <i className="fa fa-sign-out-alt"></i>
+                    <i className="fas fa-sign-out-alt"></i>
                 </button>
             </React.Fragment>
         )
@@ -55,9 +52,9 @@ export default class UserPanel extends React.Component
         )
     }
 
-    componentDidMount = () =>
+    UNSAFE_componentWillMount = () =>
     {
-        if (!this.props.data.user.id) document.location.href = '/user'
+        if (!this.props.data.user.id) this.props.history.push('/user') 
     }
     
     render = () =>
@@ -72,6 +69,8 @@ export default class UserPanel extends React.Component
         )
     }
 }
+
+export default withRouter(UserPanel)
 
 UserPanel.propTypes = {
     data: PropTypes.object.isRequired

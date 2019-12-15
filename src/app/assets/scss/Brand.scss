@@ -3,7 +3,7 @@
 aside {
 
     &.brand {
-        color: #fff;
+        color: var(--white);
         padding: 10px;
         display: block;
         text-align: center;
@@ -12,7 +12,7 @@ aside {
 
         i {
             font-style: normal;
-            color: $pink;
+            color: var(--pink);
         }
     }
 }
