@@ -1,0 +1,55 @@
+﻿@import 'Variables';
+
+.card {
+    width: calc(100% - 30px);
+    max-width: 768px;
+    background: $white;
+    position: relative;
+    margin: -85px auto 30px;
+    border-radius: $radius;
+    box-shadow: $shadow;
+    overflow: hidden;
+
+    .card-head {
+        display: flex;
+        padding: 15px;
+        line-height: 53px;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            font-weight: 100;
+            margin: 0;
+        }
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        div {
+            padding: 15px;
+        }
+
+        p {
+            text-align: justify;
+            margin-right: 2rem;
+        }
+        
+        & .emoji {
+            font-size: 5rem;
+            color: $gray-200;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        b {
+            color: $primary;
+        }
+    }
+
+    .card-footer {}
+}

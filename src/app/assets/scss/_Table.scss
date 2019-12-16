@@ -1,0 +1,53 @@
+﻿@import 'Variables';
+
+table {
+    text-align: left;
+    border-collapse: collapse;
+    width: 100vw;
+    
+    thead,
+    tbody,
+    tfoot {
+        
+        tr {
+            line-height: 25px;
+            font-size: $font-small;
+            
+            
+            th {
+                border-top: $border-grey;
+                border-bottom: $border-grey;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 5px 15px;
+            }
+            
+            td {
+                overflow: hidden;
+                padding: 0px 15px;
+                width: 10rem;   
+                max-width: 15rem;
+                white-space: nowrap;
+                box-sizing: border-box;
+                text-overflow: ellipsis;
+                border-bottom: 1px solid $gray-200;
+            }
+
+            >.center {
+                text-align: center;
+            }
+
+            >.actions {
+                width: 1%;
+                text-align: center;
+                white-space: nowrap;
+                text-overflow: unset;
+            }
+        }
+    }
+
+    >tfoot {
+        font-weight: bold;
+        color: $primary;
+    }
+}

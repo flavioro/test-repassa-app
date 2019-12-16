@@ -4,13 +4,13 @@
 import PropTypes from 'prop-types'
 
 // Style
-import '../assets/scss/Table.scss'
+import '../assets/scss/_Table.scss'
 
 export default function Table (props)
 {
     return (
         <React.Fragment>
-            {props.children}
+            { props.children }
         </React.Fragment>
     )
 }

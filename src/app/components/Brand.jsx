@@ -1,7 +1,7 @@
 ﻿import React from 'react'
 
 // Style
-import '../assets/scss/Brand.scss'
+import '../assets/scss/_Brand.scss'
 
 export default props =>
 (

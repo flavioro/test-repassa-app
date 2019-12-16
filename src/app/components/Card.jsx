@@ -4,7 +4,7 @@
 import PropTypes from 'prop-types'
 
 // Style
-import '../assets/scss/Card.scss'
+import '../assets/scss/_Card.scss'
 
 
 export default function Card (props)

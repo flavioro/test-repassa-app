@@ -4,7 +4,7 @@
 import PropTypes from 'prop-types'
 
 // Style
-import '../assets/scss/Modal.scss'
+import '../assets/scss/_Modal.scss'
 
 // Components Childs
 import Logo from './Brand'
@@ -13,7 +13,7 @@ export default function Modal (props)
 {
     return (
         <div className={ props.display ? "modal" : "d-none" }>
-            <div className="modal-main">
+            <div className="modal-content">
                 <div className="modal-head">
                     <Logo />
                     <span>campos marcados com * são obrigatórios</span>
