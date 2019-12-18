@@ -3,113 +3,32 @@
 @import 'bootstrap/scss/bootstrap-reboot.scss';
 @import 'bootstrap/scss/bootstrap-grid.scss';
 @import 'bootstrap/scss/_utilities.scss';
-@import 'Source';
+@import 'Variables';
 
-body {
+body:lang(pt-br) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-family);
-    color: var(--font-color);
-    background: var(--gray-200);
+    font-family: $font-family;
+    color: $font-color;
+    background: $gray-200;
 
     .main {
 
         img,
         button,
         input,
+        textarea,
         select {
+            outline-offset: none;
             outline: none;
-            border: none;
-            box-shadow: none;
+            // border: initial;
+            // box-shadow: none;
         }
 
         a {
             text-decoration: none;
             color: inherit;
         }
-
-        button {
-
-            &:first-child {
-                margin-right: -1px;
-                border-right: 0;
-                border-radius: var(--radius) 0 0 var(--radius);
-            }
-
-            &:last-child {
-                border-left: 0;
-                border-radius: 0 var(--radius) var(--radius) 0;
-            }
-        }
     }
-}
-
-:root {
-    --primary: #0766d7;
-    --secondary: #0763d0;
-    --mark: #ee4f4e;
-
-    --gray-light: #343a40;
-    --gray: #8d8d8d;
-    --gray-dark: #343a40;
-
-    --white:    #fff;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
-    --black:    #000;
-
-    --blue: #007bff;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #e83e8c;
-    --red: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #28a745;
-    --teal: #20c997;
-    --cyan: #17a2b8;
-
-    --success: #28a745;
-    --info: #17a2b8;
-    --warning: #ffc107;
-    --danger: #dc3545;
-    --light: #f8f9fa;
-    --dark: #343a40;
-
-    --gradient: linear-gradient(45deg, var(--primary) 0, var(--secondary) 100%);
-
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-
-    --font-small: 0.735rem;
-    --font-medium: 1rem;
-    --font-big: 2.2rem;
-    --font-color: var(--gray-600);
-    --font-family: ('Montserrat', sans-serif);
-    --font-light: 300;
-    --font-normal: 400;
-    --font-bold: 700;
-    // --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    // --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-
-    --border-white: 1px solid var(--white);
-    --border-light: 1px solid var(--grey-300);
-    --border-grey: 1px solid var(--grey-500);
-    --border-dark: 1px solid var(--grey-800);
-    --border-black: 1px solid var(--black);
-    --border-bold: 2px;
-    --shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
-    --radius: .375rem;
-    --transition: var(--transition);
 }

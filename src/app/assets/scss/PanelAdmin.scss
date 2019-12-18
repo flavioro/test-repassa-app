@@ -1,0 +1,39 @@
+@import 'Buttons';
+@import 'Fields';
+@import 'Table';
+
+table {
+
+    button {
+        padding: 0px 15px;
+        margin: 5px 0;
+        border: 1px solid $gray-300;
+    }
+
+    @media (max-width: 576px) {
+
+        th,
+        td {
+            max-width: 7rem !important;
+
+            &.actions {
+                width: 30% !important;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        th,
+        td {
+            max-width: 20rem !important;
+        }
+        &.actions {
+            width: 1% !important;
+        }
+    }
+
+    @media (min-width: 992px) {}
+
+    @media (min-width: 1200px) {}
+}

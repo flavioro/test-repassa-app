@@ -1,0 +1,49 @@
+﻿@import 'Variables';
+
+.modal {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $gradient;
+    color: $white;
+
+    .modal-content {
+        position: fixed;
+        width: 90%;
+        max-width: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 30px 15px;
+
+        .modal-head {
+            text-align: center;
+            border-bottom: 1px groove rgba(179, 179, 179, 0.5);
+            margin-bottom: 20px;
+
+            span {
+                display: block;
+                color: $white;
+                padding: 15px;
+                font-size: .735rem;
+            }
+        }
+
+        .modal-body {
+            display: flex;
+            flex-flow: row wrap;
+            border-radius: inherit;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .modal-footer {
+            display: flex;
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+}
