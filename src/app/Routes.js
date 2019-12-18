@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 
 // COMPONENTS VIEWS IMPORTS
 import AdminPanel from './views/admin/PanelAdmin'
-import UserLogin from './views/users/LoginUser'
 import UserPanel from './views/users/PanelUser'
+import UserLogin from './views/users/LoginUser'
 
 const Routes = props => (
 	<Switch>

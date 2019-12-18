@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './app/App'
 import * as serviceWorker from './serviceWorker'
 
-// Styles
-import 'bootstrap/scss/bootstrap-reboot.scss'
-import 'bootstrap/scss/bootstrap-grid.scss'
-// import 'bootstrap/scss/_utilities.scss'
+// Style
 import './app/assets/scss/Main.scss'
 
 ReactDOM.render(<App />, document.getElementById('root'))
