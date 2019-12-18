@@ -10,18 +10,13 @@ import '../../assets/scss/PanelAdmin.scss'
 
 // Components Childs
 import Modal from '../../components/Modal'
-import Table from '../../components/Table'
 import Card from '../../components/Card'
 
 const initState = {
     modalDisplay: false,
+    apiSuffix: 'list/',
     loader: false,
     employeeList: [],
-    form: {
-        name: '',
-        login: '',
-        feedback: '',
-    },
     duplicate: {
         status: false,
         msg: 'Login indisponível - Tente outro login'
@@ -32,17 +27,20 @@ const initState = {
     }
 }
 
+const initForm = {
+    name: '',
+    login: '',
+    feedback: '',
+}
+
 export default class AdminPanel extends React.Component
 {
-
-    /**
-     * @param {Object} props
-     */
     constructor (props)
     {
         super(props)
         this.state = {
-            ...initState
+            ...initState,
+            form: { ...initForm }
         }
     }
 
@@ -65,10 +63,10 @@ export default class AdminPanel extends React.Component
             .finally(() => { this.setState({ loader: false }) })
     }
 
-    apiGet = async () =>
+    apiGet = () =>
     {
-        await this.setState({ loader: true })
-        Axios.get(this.props.endpoint + 'list')
+        this.setState({ loader: true }, () => { return true})
+        Axios.get(this.props.endpoint + this.state.apiSuffix)
             .then(response =>
             {
                 response.data.map(data =>
@@ -90,7 +88,6 @@ export default class AdminPanel extends React.Component
     apiPut = () =>
     {
         let user = { ...this.state.form }
-        // @ts-ignore
         delete user.id
         Axios.put(this.props.endpoint + this.state.form.id, null, { params: { ...user } })
             .then(() =>
@@ -109,16 +106,11 @@ export default class AdminPanel extends React.Component
             .finally(() => { this.setState({ loader: false }) })
     }
 
-    /**
-     * @param {React.ReactText} id
-     */
     apiDelete = (id) =>
     {
         Axios.delete(this.props.endpoint + id)
             .then((response) => this.employeeListReset())
     }
-
-    modalToggle = () => this.setState({ modalDisplay: !this.state.modalDisplay })
 
     cardHeader = () =>
     {
@@ -126,10 +118,10 @@ export default class AdminPanel extends React.Component
             <React.Fragment>
                 <h2>Lista de funcionários</h2>
                 <button
-                    className="btn-icon"
+                    className='btn-icon'
                     onClick={ () => this.modalToggle() }
                 >
-                    <i className="fa fa-plus"></i>
+                    <i className='fa fa-plus'></i>
                 </button>
             </React.Fragment>
         )
@@ -143,8 +135,8 @@ export default class AdminPanel extends React.Component
                     <h3>Nenhum funcionário cadastrado!</h3>
                     <span>Clique no botão <b>+</b> para cadastrar um novo funcionário<b>.</b></span>
                 </div>
-                <div className="emoji">
-                    <i className="fas fa-grimace" />
+                <div className='emoji'>
+                    <i className='fas fa-grimace' />
                 </div>
             </React.Fragment>
         )
@@ -157,21 +149,23 @@ export default class AdminPanel extends React.Component
         {
             return (
                 <tr key={ index }>
-                    <td className="left">{ this.state.loader ? <Skeleton /> : item.name }</td>
+                    <td>{ this.state.loader ? <Skeleton /> : item.name }</td>
                     <td>{ this.state.loader ? <Skeleton /> : item.login }</td>
-                    <td className="feedback">{ this.state.loader ? <Skeleton /> : item.feedback }</td>
-                    <td className="actions btn-group">
+                    <td>{ this.state.loader ? <Skeleton /> : item.feedback }</td>
+                    <td className='actions btn-group'>
                         <button
-                            className="edit"
+                            disabled={ this.state.loader }
+                            className='edit'
                             onClick={ () => this.btnEdit(item.id) }
                         >
-                            <i className="fa fa-pen"></i>
+                            <i className='fa fa-pen'></i>
                         </button>
                         <button
-                            className="delete"
+                            disabled={ this.state.loader }
+                            className='delete'
                             onClick={ () => this.apiDelete(item.id) }
                         >
-                            <i className="fa fa-trash"></i>
+                            <i className='fa fa-trash'></i>
                         </button>
                     </td>
                 </tr>
@@ -185,10 +179,10 @@ export default class AdminPanel extends React.Component
             <table>
                 <thead>
                     <tr>
-                        <th className="left">Nome</th>
+                        <th>Nome</th>
                         <th>login</th>
                         <th>feedback</th>
-                        <th className="actions">Ações</th>
+                        <th className='actions'>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -196,17 +190,10 @@ export default class AdminPanel extends React.Component
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>Total de funcionários</td>
-                        <td>{ this.state.employeeList.length }</td>
+                        <td>{ this.state.loader ? <Skeleton /> : 'Total de funcionários' }</td>
+                        <td>{ this.state.loader ? <Skeleton /> : this.state.employeeList.length }</td>
                         <td></td>
-                        <td>
-                            <button
-                                className="delete"
-                                onClick={ (e) => this.apiDelete(e) }
-                            >
-                                <i className="fa fa-trash"></i>
-                            </button>
-                        </td>
+                        <td></td>
                     </tr>
                 </tfoot>
             </table>
@@ -214,9 +201,6 @@ export default class AdminPanel extends React.Component
         )
     }
 
-    /**
-     * @param {String} id
-     */
     btnEdit = (id) =>
     {
         const data = this.state.employeeList.find(user => { return user.id === id })
@@ -226,47 +210,35 @@ export default class AdminPanel extends React.Component
 
     employeeListReset = () => this.setState({ employeeList: [] }, () => { this.apiGet() })
 
-    /**
-     * @param {{ target: { name: React.ReactText; value: String } }} event
-     */
     formField = (event) => 
     {
+        const error = this.state.duplicate.status || this.state.empty.status
         const form = this.state.form
         form[event.target.name] = event.target.value
-        this.setState({ form: form })
+        if (error) this.setState({
+            duplicate: { ...initState.duplicate },
+            empty: { ...initState.empty },
+            form: form
+        })
+        else this.setState({ form: form })
     }
 
-    formReset = () => 
+    modalClose = () => 
     {
         this.setState(prevState => (
             {
                 duplicate: { ...prevState.duplicate, status: false },
                 empty: { ...prevState.empty, status: false },
-                form: {
-                    name: '',
-                    login: '',
-                    feedback: '',
-                }
+                form: { ...initForm }
             }
         ))
-    }
-
-    modalClose = () => 
-    {
-        this.formReset()
         this.modalToggle()
     }
 
-    modalSave = async () =>
+    modalSave = () =>
     {
-        await this.setState(prevState => (
-            {
-                duplicate: { ...prevState.duplicate, status: false },
-                empty: { ...prevState.empty, status: false },
-                loader: true
-            }
-        ))
-        if (this.state.form.name && this.state.form.login) this.state.form.id ? this.apiPut() : this.apiPost()
+        if (this.state.form.name && this.state.form.login)
+            this.state.form.id ? this.apiPut() : this.apiPost()
         else this.setState(prevState => ({
             empty: { ...prevState.empty, status: true },
             loader: false
@@ -277,51 +249,51 @@ export default class AdminPanel extends React.Component
     {
         return (
             <React.Fragment>
-                <div className="modal-body form">
-                    <div className="field-group">
+                <div className='modal-body'>
+                    <div className='field-group'>
                         <label>Cadastro de funcionário</label>
                     </div>
-                    <div className="field-group">
+                    <div className='field-group'>
                         <label>Nome *</label>
                         <input
-                            type="text"
-                            name="name"
+                            type='text'
+                            name='name'
                             onChange={ (e) => this.formField(e) }
                             value={ this.state.form.name }
                         />
                     </div>
-                    <div className="field-group">
+                    <div className='field-group'>
                         <label>Login *</label>
                         <input
-                            type="text"
-                            name="login"
+                            type='text'
+                            name='login'
                             onChange={ (e) => this.formField(e) }
                             value={ this.state.form.login }
                         />
                     </div>
-                    <div className="field-group">
+                    <div className='field-group'>
                         <label>Feedback</label>
                         <textarea
                             rows={ 7 }
-                            name="feedback"
+                            name='feedback'
                             onChange={ (e) => this.formField(e) }
                             value={ this.state.form.feedback }
                         />
                     </div>
-                    <div className="field-group">
+                    <div className='field-group'>
                         <span>{ this.state.duplicate.status ? this.state.duplicate.msg : this.state.empty.status ? this.state.empty.msg : '⠀' }</span>
-                        <i className={ this.state.loader ? "fa fa-spinner fa-pulse" : 'd-none' }></i>
+                        <i className={ this.state.loader ? 'fa fa-spinner fa-pulse' : 'd-none' }></i>
                     </div>
                 </div>
-                <div className="modal-footer btn-group">
+                <div className='modal-footer btn-group'>
                     <button
-                        className="mark-light"
+                        className='btn-light-mark'
                         onClick={ () => this.modalSave() }
                     >
                         salvar
                     </button>
                     <button
-                        className="light"
+                        className='btn-light'
                         onClick={ () => this.modalClose() }
                     >
                         cancelar
@@ -331,21 +303,21 @@ export default class AdminPanel extends React.Component
         )
     }
 
+    modalToggle = () => this.setState({ modalDisplay: !this.state.modalDisplay })
+
     componentDidMount = () => this.apiGet()
 
     render = () =>
     {
         return (
-            <div className="main">
+            <React.Fragment>
                 <Card header={ this.cardHeader() } >
-                    <Table>
-                        { this.state.employeeList.length || this.state.loader ? this.tableBuild() : this.cardEmpty() }
-                    </Table>
+                    { this.state.employeeList.length || this.state.loader ? this.tableBuild() : this.cardEmpty() }
                 </Card>
                 <Modal display={ this.state.modalDisplay }>
                     { this.modalBuild() }
                 </Modal>
-            </div>
+            </React.Fragment>
         )
     }
 }

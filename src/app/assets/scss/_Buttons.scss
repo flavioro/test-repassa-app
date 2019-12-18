@@ -113,11 +113,13 @@ button {
 
     &:only-child {
         flex: 1;
+        margin: 0 20px;
         border-radius: $radius;
     }
 
     &:disabled {
         opacity: .5;
+        cursor: no-drop;
     }
 }
 
@@ -129,7 +131,7 @@ button {
         border-radius: 0;
         flex: 1;
 
-        &.mark-light {
+        &.btn-light-mark {
             border: 1px solid $white;
             background: rgba(255, 255, 255, .1);
             color: $white;
@@ -147,7 +149,7 @@ button {
             }
         }
 
-        &.light {
+        &.btn-light {
             border: 1px solid $white;
             background: transparent;
             color: $white;

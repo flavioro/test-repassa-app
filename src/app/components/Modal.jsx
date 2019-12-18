@@ -12,9 +12,9 @@ import Logo from './Brand'
 export default function Modal (props)
 {
     return (
-        <div className={ props.display ? "modal" : "d-none" }>
-            <div className="modal-content">
-                <div className="modal-head">
+        <div className={ props.display ? 'modal' : 'd-none' }>
+            <div className='modal-content'>
+                <div className='modal-head'>
                     <Logo />
                     <span>campos marcados com * são obrigatórios</span>
                 </div>

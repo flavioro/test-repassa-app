@@ -13,15 +13,18 @@ import Modal from '../../components/Modal'
 
 const initState = {
     modalDisplay: true,
+    apiSuffix: 'findbylogin/',
     loader: false,
     login: '',
-    notFound: {
-        status: false,
-        msg: 'Login incorreto ou inexistente'
-    },
-    empty: {
-        status: false,
-        msg: 'Preencha o campo login'
+    error: {
+        notFound: {
+            status: false,
+            msg: 'Login incorreto ou inexistente'
+        },
+        empty: {
+            status: false,
+            msg: 'Preencha o login'
+        }
     }
 }
 
@@ -38,7 +41,7 @@ class UserLogin extends React.Component
 
     getUser = () =>
     {
-        Axios.get(this.props.data.apiEndpoint + 'findbylogin/' + this.state.login)
+        Axios.get(this.props.data.apiEndpoint + this.state.apiSuffix + this.state.login)
             .then(response =>
             {
                 if (response.data.id) this.props.dataFlow(response.data)
@@ -46,7 +49,15 @@ class UserLogin extends React.Component
             .catch((err) =>
             {
                 if (err.response.data.code === 404) this.setState(prevState => (
-                    { notFound: { ...prevState.notFound, status: true } }
+                    {
+                        error: {
+                            ...prevState.error,
+                            notFound: {
+                                ...prevState.error.notFound,
+                                status: true
+                            }
+                        }
+                    }
                 ))
             })
             .finally(() => { this.setState({ loader: false }) })
@@ -64,16 +75,39 @@ class UserLogin extends React.Component
         } else
         {
             this.setState(prevState => ({
-                notFound: { ...prevState.notFound, status: false },
-                empty: { ...prevState.empty, status: true },
+                error: {
+                    ...prevState.error,
+                    notFound: {
+                        ...prevState.error.notFound,
+                        status: false
+                    },
+                    empty: {
+                        ...prevState.error.empty,
+                        status: true
+                    }
+                },
                 loader: false
-            }), () => { return false })
+            }))
         }
     }
 
     formField = (e) => 
     {
-        this.setState((prevState) => ({ empty: { ...prevState.empty, status: false } }))
+        if (this.state.error.empty.status || this.state.error.notFound.status) 
+            this.setState(prevState => ({
+                error: {
+                    ...prevState.error,
+                    notFound: {
+                        ...prevState.error.notFound,
+                        status: false
+                    },
+                    empty: {
+                        ...prevState.error.empty,
+                        status: false
+                    }
+                }
+            }))
+        
         this.setState({ login: e.target.value })
     }
 
@@ -81,29 +115,30 @@ class UserLogin extends React.Component
     {
         return (
             <React.Fragment>
-                <div className="modal-body form">
-                    <div className="field-group">
+                <div className='modal-body'>
+                    <div className='field-group'>
                         <label>Área do funcionário</label>
                     </div>
-                    <div className="field-group">
+                    <div className='field-group'>
                         <label>Login *</label>
                         <input
-                            type="text"
-                            name="login"
+                            type='text'
+                            name='login'
                             onChange={ (e) => this.formField(e) }
                             value={ this.state.login }
                         />
                     </div>
-                    <div className="field-group">
-                        <span>{ this.state.notFound.status ? this.state.notFound.msg : this.state.empty.status ? this.state.empty.msg : '⠀' }</span>
+                    <div className='field-group'>
+                        <span>{ this.state.error.notFound.status ? this.state.error.notFound.msg : this.state.error.empty.status ? this.state.error.empty.msg : '⠀' }</span>
                     </div>
                 </div>
-                <div className="modal-footer">
+                <div className='modal-footer'>
                     <button
-                        className="btn btn-light large"
+                        disabled={ this.state.loader }
+                        className='btn-light'
                         onClick={ () => this.submitForm() }
                     >
-                        { this.state.loader ? <i className="fa fa-spinner fa-pulse"></i> : 'login' }
+                        { this.state.loader ? <i className='fa fa-spinner fa-pulse'></i> : 'login' }
                     </button>
                 </div>
             </React.Fragment>
@@ -118,11 +153,9 @@ class UserLogin extends React.Component
     render = () =>
     {
         return (
-            <div className="main">
                 <Modal display={ this.state.modalDisplay }>
                     { this.modalBuild() }
                 </Modal>
-            </div>
         )
     }
 }

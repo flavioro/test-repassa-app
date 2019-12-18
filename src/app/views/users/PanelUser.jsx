@@ -19,16 +19,16 @@ class UserPanel extends React.Component
             <React.Fragment>
                 <h2>Olá { this.props.data.user.name }!</h2>
                 <button
-                    className="btn btn-icon"
+                    className='btn-icon'
                     onClick={ () => document.location.href = '/' }
                 >
-                    <i className="fas fa-sign-out-alt"></i>
+                    <i className='fas fa-sign-out-alt'></i>
                 </button>
             </React.Fragment>
         )
     }
 
-    feedbackRender = () => 
+    cardBodyContent = () => 
     {
         return (
             <React.Fragment>
@@ -40,7 +40,7 @@ class UserPanel extends React.Component
         )
     }
 
-    feedbackEmpty = () => 
+    cardBodyEmpty = () => 
     {
         return (
             <React.Fragment>
@@ -48,8 +48,8 @@ class UserPanel extends React.Component
                     <h3>Nenhum feedback ainda!</h3>
                     <p>Você não recebeu nenhum feedback do seu gestor.</p>
                 </div>
-                <div className="emoji">
-                    <i className="fa fa-meh-rolling-eyes" />
+                <div className='emoji'>
+                    <i className='fa fa-meh-rolling-eyes' />
                 </div>
             </React.Fragment>
         )
@@ -62,11 +62,10 @@ class UserPanel extends React.Component
 
     render = () =>
     {
-        console.log('render')
         return (
-            <div className="main">
+            <div className='container-fluid'>
                 <Card header={ this.cardHeader() } >
-                    { this.props.data.user.feedback ? this.feedbackRender() : this.feedbackEmpty() }
+                    { this.props.data.user.feedback ? this.cardBodyContent() : this.cardBodyEmpty() }
                 </Card>
             </div>
         )

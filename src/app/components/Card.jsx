@@ -6,18 +6,15 @@ import PropTypes from 'prop-types'
 // Style
 import '../assets/scss/_Card.scss'
 
-
 export default function Card (props)
 {
     return (
-        <div className="wrapper">
-            <div className="card">
-                <div className="card-head">
-                    {props.header}
-                </div>
-                <div className="card-body">
-                    {props.children}
-                </div>
+        <div className='card'>
+            <div className='card-head'>
+                { props.header }
+            </div>
+            <div className='card-body'>
+                { props.children }
             </div>
         </div>
     )
@@ -29,7 +26,6 @@ Card.propTypes = {
         PropTypes.node
     ]).isRequired,
     children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ]).isRequired
 }

@@ -13,10 +13,10 @@ const api = {
 }
 
 const user = {
-    id: undefined,
-    name: undefined,
-    login: undefined,
-    feedback: undefined,
+    id: '',
+    name: '',
+    login: '',
+    feedback: '',
 }
 
 export default class App extends React.Component 

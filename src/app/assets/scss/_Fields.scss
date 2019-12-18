@@ -39,13 +39,13 @@ div {
     textarea,
     input {
         width: 100%;
-        color: $white;
+        color: $font-color;
         font-size: $font-medium;
         line-height: normal;
         text-align: left;
         display: inline-block;
         border-radius: $radius;
-        background: transparent;
+        background: $white;
         border: 1px solid $white;
         box-sizing: border-box;
         overflow-y: hidden;
@@ -59,8 +59,7 @@ div {
         &:focus,
         &:active,
         &:hover {
-            box-shadow: 0px 0px 2px 0px $mark;
-            border: 1px solid $mark;
+            box-shadow: 0px 0px 7px 0px $white;
         }
     }
 }
