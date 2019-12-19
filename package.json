@@ -1,16 +1,16 @@
 {
-  "name": "test-repassa-app",
+  "name": "template-reactjs",
   "version": "1.0.0",
-  "description": "test-repassa-app",
+  "description": "Template client side with Reactjs at create-react-app",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/i-espinola/test-repassa-app.git"
+    "url": "git+https://github.com/i-espinola/template-reactjs.git"
   },
   "bugs": {
-    "url": "https://github.com/i-espinola/test-repassa-app/issues"
+    "url": "https://github.com/i-espinola/template-reactjs/issues"
   },
-  "readme": "https://github.com/i-espinola/test-repassa-app#readme",
+  "readme": "https://github.com/i-espinola/template-reactjs#readme",
   "license": "MIT",
   "main": "server/index.js",
   "homepage": ".",
