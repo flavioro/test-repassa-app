@@ -1,13 +1,46 @@
-@import 'Buttons';
+
 @import 'Fields';
 @import 'Table';
 
 table {
 
     button {
-        padding: 0px 15px;
-        margin: 5px 0;
+        margin: 12px 0;
+        height: 30px;
+        line-height: normal;
+        box-sizing: border-box;
+        padding: 0 15px;
         border: 1px solid $gray-300;
+
+        &.edit {
+
+            &:focus,
+            &:active,
+            &:hover {
+                background: $orange;
+                border-color: $orange;
+                box-shadow: 0 0 5px 5px rgba(255, 152, 0, 0.3);
+
+                i {
+                    color: $white;
+                }
+            }
+        }
+
+        &.delete {
+
+            &:focus,
+            &:active,
+            &:hover {
+                background: $pink;
+                border-color: $pink;
+                box-shadow: 0 0 5px 5px rgba(209, 65, 113, 0.3);
+
+                i {
+                    color: $white;
+                }
+            }
+        }
     }
 
     @media (max-width: 576px) {
@@ -37,3 +70,5 @@ table {
 
     @media (min-width: 1200px) {}
 }
+
+@import 'Buttons';

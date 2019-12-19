@@ -81,36 +81,6 @@ button {
         }
     }
 
-    &.edit {
-
-        &:focus,
-        &:active,
-        &:hover {
-            background: $orange;
-            border-color: $orange;
-            box-shadow: 0 0 5px 5px rgba(255, 152, 0, 0.3);
-
-            i {
-                color: $white;
-            }
-        }
-    }
-
-    &.delete {
-
-        &:focus,
-        &:active,
-        &:hover {
-            background: $pink;
-            border-color: $pink;
-            box-shadow: 0 0 5px 5px rgba(209, 65, 113, 0.3);
-
-            i {
-                color: $white;
-            }
-        }
-    }
-
     &:only-child {
         flex: 1;
         margin: 0 20px;
@@ -125,7 +95,7 @@ button {
 
 .btn-group {
 
-    >button {
+    > button {
         color: $gray-500;
         border: 1px solid $gray-500;
         border-radius: 0;

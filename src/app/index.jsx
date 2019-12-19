@@ -5,11 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 
 // Components Childs
 import Header from './components/Header'
-import Routes from './routes'
-
-
-// Style
-import './assets/scss/Main.scss'
+import Routes from './Routes'
 
 const api = {
     endpoint: 'https://repassa-api.herokuapp.com/api/',
@@ -17,14 +13,14 @@ const api = {
 }
 
 const user = {
-    id: undefined,
-    name: undefined,
-    login: undefined,
-    feedback: undefined,
+    id: '',
+    name: '',
+    login: '',
+    feedback: '',
 }
 
 export default class App extends React.Component 
-{ 
+{
 
     constructor (props)
     {
@@ -39,14 +35,14 @@ export default class App extends React.Component
     dataFlow = (data) => this.setState({ user: data })
 
     render = () =>
-    { 
+    {
         return (
             <BrowserRouter>
                 <div className="main">
                     <Header />
                     <Routes data={ this.state } dataFlow={ this.dataFlow } />
                 </div>
-            </BrowserRouter>    
+            </BrowserRouter>
         )
     }
 }
